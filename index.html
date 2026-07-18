@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Streetwear Jockeys — Catálogo</title>
+<meta name="description" content="Streetwear Jockeys — Catálogo de gorras. Tu estilo, tu actitud. Consulta disponibilidad por WhatsApp.">
+
+<link rel="icon" type="image/webp" href="assets/logo-300.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Permanent+Marker&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script type="module" src="https://unpkg.com/@google/model-viewer@3.4.0/dist/model-viewer.min.js"></script>
+
+<style>
+  /* ============================================================
+     STREETWEAR JOCKEYS — TOKENS
+     Paleta tomada del logo: negro, violeta eléctrico, teal y un
+     barrido "holográfico" (violeta→teal→rosa) para el patch.
+  ============================================================ */
+  :root{
+    --ink:#0a0a0c;
+    --panel:#141317;
+    --panel-2:#1b1a20;
+    --line: rgba(242,242,240,.16);
+    --white:#f2f2f0;
+    --mut: #a6a3ad;
+    --violet:#8b5cf6;
+    --violet-2:#6d28d9;
+    --teal:#2dd4bf;
+    --teal-2:#14b8a6;
+    --whatsapp:#25D366;
+    --holo: linear-gradient(90deg,#8b5cf6,#2dd4bf 45%,#ec4899 75%,#8b5cf6);
+    --radius: 22px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--white);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--violet); color:#fff;}
+
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:.01em;
+    line-height:.95;
+    margin:0;
+  }
+  .marker{font-family:'Permanent Marker', cursive; font-weight:400;}
+
+  .holo-text{
+    background:var(--holo);
+    background-size:300% 100%;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:holoshift 8s linear infinite;
+  }
+  @keyframes holoshift{
+    0%{background-position:0% 50%;}
+    100%{background-position:300% 50%;}
+  }
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:'Permanent Marker', cursive;
+    font-size:14px;
+    letter-spacing:.06em;
+    color:var(--teal);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before, .eyebrow::after{content:""; height:1px; width:26px; background:var(--teal); opacity:.6;}
+
+  /* ---------------- HEADER ---------------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(10,10,12,.78);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand img{height:42px; width:42px; border-radius:50%; object-fit:cover; border:1px solid var(--line);}
+  .brand-name{font-family:'Anton'; font-size:18px; letter-spacing:.02em; line-height:1;}
+  .brand-name span{display:block; font-family:'Inter'; font-size:10px; letter-spacing:.18em; color:var(--mut); font-weight:600; margin-top:3px;}
+
+  .nav-links{display:flex; align-items:center; gap:32px;}
+  .nav-links a{
+    font-size:13px; font-weight:600; letter-spacing:.03em; text-transform:uppercase;
+    color:var(--mut); transition:color .2s;
+    position:relative;
+  }
+  .nav-links a:hover{color:var(--white);}
+
+  .btn-wa{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--white); color:var(--ink);
+    padding:11px 18px; border-radius:100px;
+    font-weight:700; font-size:13px;
+    border:1px solid transparent;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-wa svg{width:16px; height:16px; flex:none;}
+  .btn-wa:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(37,211,102,.25); background:var(--teal);}
+
+  .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--white); border-radius:10px; padding:8px 10px; font-size:18px;}
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    position:relative;
+    padding:96px 24px 90px;
+    text-align:center;
+    overflow:hidden;
+    isolation:isolate;
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:-20%;
+    background:
+      radial-gradient(circle at 22% 20%, rgba(139,92,246,.28), transparent 42%),
+      radial-gradient(circle at 78% 30%, rgba(45,212,191,.24), transparent 42%),
+      radial-gradient(circle at 50% 90%, rgba(139,92,246,.12), transparent 50%);
+    z-index:-2;
+  }
+  .rope-ring{
+    position:absolute; top:50%; left:50%;
+    width:640px; height:640px;
+    border-radius:50%;
+    border:2px dashed rgba(242,242,240,.10);
+    transform:translate(-50%,-50%);
+    animation:spin 60s linear infinite;
+    z-index:-1;
+  }
+  .rope-ring.r2{width:760px; height:760px; border-color:rgba(139,92,246,.10); animation-duration:90s; animation-direction:reverse;}
+  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+
+  .hero-logo{
+    width:150px; height:150px; border-radius:50%;
+    margin:0 auto 28px;
+    border:1px solid var(--line);
+    box-shadow:0 0 0 10px rgba(139,92,246,.06), 0 30px 60px -20px rgba(0,0,0,.7);
+  }
+  .hero h1{font-size:clamp(40px, 8vw, 92px); }
+  .hero-sub{
+    max-width:560px; margin:22px auto 0;
+    color:var(--mut); font-size:16px; line-height:1.6;
+  }
+  .hero-cta{
+    margin-top:38px;
+    display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 26px; border-radius:100px;
+    background:var(--holo); background-size:220% 100%;
+    color:#0a0a0c; font-weight:800; font-size:14px; letter-spacing:.02em; text-transform:uppercase;
+    transition:background-position .5s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background-position:100% 0; transform:translateY(-2px);}
+  .btn-ghost{
+    padding:15px 24px; border-radius:100px; border:1px solid var(--line);
+    font-weight:700; font-size:14px; color:var(--white);
+    transition:border-color .2s, background .2s;
+  }
+  .btn-ghost:hover{border-color:var(--teal); background:rgba(45,212,191,.06);}
+
+  .marquee{
+    margin-top:70px;
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    padding:14px 0; overflow:hidden;
+    background:var(--panel);
+  }
+  .marquee-track{display:flex; gap:40px; white-space:nowrap; animation:scroll 26s linear infinite; width:max-content;}
+  .marquee-track span{
+    font-family:'Anton'; font-size:15px; letter-spacing:.08em; color:var(--mut);
+    display:flex; align-items:center; gap:40px;
+  }
+  .marquee-track span em{font-style:normal; color:var(--teal);}
+  @keyframes scroll{to{transform:translateX(-50%);}}
+
+  /* ---------------- SECTION HEADERS ---------------- */
+  section{padding:100px 0;}
+  .sec-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:50px; flex-wrap:wrap;}
+  .sec-head h2{font-size:clamp(30px,4.5vw,48px);}
+  .sec-head p{color:var(--mut); max-width:420px; font-size:14.5px; line-height:1.6;}
+
+  /* ---------------- HOW-IT-WORKS 3D DEMO STRIP ---------------- */
+  .demo3d{
+    background:var(--panel);
+    border:1px dashed var(--line);
+    border-radius:var(--radius);
+    padding:36px;
+    display:grid; grid-template-columns:1.05fr 1fr; gap:36px; align-items:center;
+  }
+  .demo3d-viewer{
+    position:relative;
+    background:radial-gradient(circle at 30% 20%, rgba(139,92,246,.18), transparent 60%), var(--panel-2);
+    border-radius:16px; overflow:hidden; aspect-ratio:1/1;
+    border:1px solid var(--line);
+  }
+  .demo3d-viewer model-viewer{width:100%; height:100%; --poster-color:transparent;}
+  .demo3d-tag{
+    position:absolute; top:14px; left:14px; z-index:2;
+    background:var(--ink); border:1px solid var(--line);
+    padding:6px 12px; border-radius:100px; font-size:11px; font-weight:700;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--teal);
+    display:flex; align-items:center; gap:6px;
+  }
+  .demo3d-tag::before{content:""; width:6px; height:6px; border-radius:50%; background:var(--teal); box-shadow:0 0 0 3px rgba(45,212,191,.25);}
+  .demo3d-hint{
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%); z-index:2;
+    font-size:11px; color:var(--mut); background:rgba(10,10,12,.7); padding:6px 12px; border-radius:100px;
+    display:flex; align-items:center; gap:6px; white-space:nowrap;
+  }
+  .demo3d-copy h3{font-size:26px; margin-bottom:14px;}
+  .demo3d-copy p{color:var(--mut); font-size:14.5px; line-height:1.7; margin-bottom:14px;}
+  .demo3d-copy code{
+    background:var(--panel-2); border:1px solid var(--line); padding:2px 7px; border-radius:6px;
+    font-size:12.5px; color:var(--teal);
+  }
+  .demo3d-list{list-style:none; padding:0; margin:20px 0 0; display:flex; flex-direction:column; gap:10px;}
+  .demo3d-list li{display:flex; gap:10px; font-size:13.5px; color:var(--mut);}
+  .demo3d-list li b{color:var(--white); font-weight:600;}
+  .demo3d-list li::before{content:"→"; color:var(--violet); flex:none;}
+
+  /* ---------------- CATALOG GRID ---------------- */
+  .grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+
+  .card{
+    position:relative;
+    background:var(--panel);
+    border-radius:var(--radius);
+    border:1px solid var(--line);
+    overflow:hidden;
+    display:flex; flex-direction:column;
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .card:hover{border-color:rgba(139,92,246,.5); transform:translateY(-4px);}
+
+  .patch{
+    position:absolute; top:14px; right:14px; z-index:5;
+    background:var(--ink); border:1px solid var(--line);
+    padding:5px 11px; border-radius:100px;
+    font-size:10.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase;
+  }
+  .patch.holo{
+    background:var(--holo); background-size:220% 100%;
+    animation:holoshift 6s linear infinite;
+    color:#0a0a0c; border:none;
+  }
+
+  .media{
+    position:relative;
+    aspect-ratio:1/1;
+    border-bottom:1px dashed var(--line);
+    background:var(--panel-2);
+  }
+  .tabs{
+    position:absolute; top:14px; left:14px; z-index:5;
+    display:flex; background:rgba(10,10,12,.75); backdrop-filter:blur(6px);
+    border:1px solid var(--line); border-radius:100px; padding:3px; gap:2px;
+  }
+  .tab-btn{
+    border:none; background:transparent; color:var(--mut);
+    font-size:11px; font-weight:700; letter-spacing:.03em; text-transform:uppercase;
+    padding:6px 12px; border-radius:100px; cursor:pointer; transition:.2s;
+  }
+  .tab-btn.active{background:var(--white); color:var(--ink);}
+
+  .pane{position:absolute; inset:0; opacity:0; visibility:hidden; transition:opacity .25s ease;}
+  .pane.active{opacity:1; visibility:visible;}
+
+  /* photo carousel placeholder slides */
+  .slides{position:relative; width:100%; height:100%; overflow:hidden;}
+  .slide-track{display:flex; height:100%; transition:transform .45s cubic-bezier(.65,0,.35,1);}
+  .slide{
+    flex:0 0 100%; height:100%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px;
+    position:relative;
+  }
+  .slide .cap-ico{font-size:54px; filter:drop-shadow(0 6px 14px rgba(0,0,0,.4));}
+  .slide small{color:rgba(255,255,255,.75); font-size:11px; letter-spacing:.04em; text-transform:uppercase; font-weight:700;}
+  .slide .ph-note{
+    position:absolute; bottom:10px; left:10px; right:10px;
+    font-size:10px; color:rgba(255,255,255,.55); text-align:center; line-height:1.4;
+  }
+  .arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:6;
+    width:34px; height:34px; border-radius:50%; border:1px solid var(--line);
+    background:rgba(10,10,12,.65); color:#fff; font-size:15px;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:.2s;
+  }
+  .arrow:hover{background:var(--white); color:var(--ink);}
+  .arrow.prev{left:10px;} .arrow.next{right:10px;}
+  .dots{position:absolute; bottom:10px; left:0; right:0; display:flex; gap:6px; justify-content:center; z-index:6;}
+  .dot{width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.3); cursor:pointer; transition:.2s;}
+  .dot.active{background:var(--white); width:16px; border-radius:4px;}
+
+  .pane-3d model-viewer{width:100%; height:100%;}
+  .demo-badge{
+    position:absolute; bottom:10px; left:10px; z-index:6;
+    background:rgba(10,10,12,.75); border:1px solid var(--line);
+    font-size:9.5px; letter-spacing:.03em; text-transform:uppercase; font-weight:700; color:var(--teal);
+    padding:5px 10px; border-radius:100px;
+  }
+
+  .card-body{padding:20px 22px 22px; display:flex; flex-direction:column; gap:12px; flex:1;}
+  .card-body h3{font-size:21px; letter-spacing:.01em;}
+  .card-body .desc{font-size:13px; color:var(--mut); line-height:1.55; min-height:36px;}
+
+  .swatches{display:flex; align-items:center; gap:8px;}
+  .swatch{width:16px; height:16px; border-radius:50%; border:2px solid var(--panel); box-shadow:0 0 0 1px var(--line);}
+  .swatches span{font-size:11px; color:var(--mut); margin-left:4px;}
+
+  .card-foot{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto; padding-top:6px;}
+  .price{font-family:'Anton'; font-size:16px; color:var(--white);}
+  .price small{font-family:'Inter'; font-size:10px; color:var(--mut); font-weight:600; display:block; text-transform:uppercase; letter-spacing:.04em;}
+
+  .btn-card-wa{
+    display:inline-flex; align-items:center; gap:7px;
+    background:var(--panel-2); border:1px solid var(--line);
+    padding:10px 14px; border-radius:100px;
+    font-size:12.5px; font-weight:700;
+    transition:.2s;
+  }
+  .btn-card-wa svg{width:14px; height:14px; color:var(--whatsapp);}
+  .btn-card-wa:hover{border-color:var(--whatsapp); background:rgba(37,211,102,.08);}
+
+  /* ---------------- ABOUT ---------------- */
+  .about{
+    display:grid; grid-template-columns:.9fr 1.1fr; gap:60px; align-items:center;
+  }
+  .about-visual{
+    aspect-ratio:1/1; border-radius:var(--radius); border:1px solid var(--line);
+    background:
+      radial-gradient(circle at 30% 30%, rgba(139,92,246,.25), transparent 55%),
+      radial-gradient(circle at 75% 70%, rgba(45,212,191,.22), transparent 55%),
+      var(--panel);
+    display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .about-visual img{width:58%; border-radius:50%; border:1px solid var(--line); position:relative; z-index:2;}
+  .about-visual .ring{position:absolute; border:1px dashed rgba(242,242,240,.12); border-radius:50%;}
+  .about-visual .ring.r1{width:70%; height:70%; animation:spin 40s linear infinite;}
+  .about-visual .ring.r2{width:88%; height:88%; animation:spin 55s linear infinite reverse;}
+
+  .about-copy p{color:var(--mut); font-size:15px; line-height:1.75; margin-bottom:16px;}
+  .about-copy h2{font-size:clamp(30px,4vw,44px); margin-bottom:22px;}
+  .about-stats{display:flex; gap:34px; margin-top:28px; flex-wrap:wrap;}
+  .about-stats div b{font-family:'Anton'; font-size:30px; display:block;}
+  .about-stats div span{font-size:11.5px; color:var(--mut); text-transform:uppercase; letter-spacing:.04em;}
+
+  /* ---------------- CONTACT / FOOTER ---------------- */
+  .contact{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:64px 40px;
+    text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .contact::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(139,92,246,.18), transparent 60%);
+  }
+  .contact h2{font-size:clamp(32px,5vw,58px); position:relative;}
+  .contact p{color:var(--mut); max-width:480px; margin:16px auto 30px; font-size:14.5px; line-height:1.6; position:relative;}
+  .contact .btn-primary{position:relative; font-size:15px; padding:18px 32px;}
+
+  footer{border-top:1px solid var(--line); padding:40px 0 30px; margin-top:40px;}
+  .foot-row{display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap;}
+  .foot-brand{display:flex; align-items:center; gap:10px;}
+  .foot-brand img{width:30px; height:30px; border-radius:50%;}
+  .foot-brand span{font-family:'Anton'; font-size:14px;}
+  .foot-links{display:flex; gap:22px; flex-wrap:wrap;}
+  .foot-links a{font-size:12.5px; color:var(--mut); font-weight:600;}
+  .foot-links a:hover{color:var(--white);}
+  .foot-copy{font-size:11.5px; color:var(--mut); margin-top:24px; text-align:center;}
+
+  /* ---------------- FLOATING WHATSAPP ---------------- */
+  .fab-wa{
+    position:fixed; bottom:22px; right:22px; z-index:60;
+    width:58px; height:58px; border-radius:50%;
+    background:var(--whatsapp); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px rgba(37,211,102,.4);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  .fab-wa svg{width:28px; height:28px; color:#fff;}
+  @keyframes pulse{0%,100%{box-shadow:0 10px 30px rgba(37,211,102,.4);} 50%{box-shadow:0 10px 30px rgba(37,211,102,.7), 0 0 0 8px rgba(37,211,102,.08);}}
+
+  /* ---------------- RESPONSIVE ---------------- */
+  @media (max-width:980px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .demo3d{grid-template-columns:1fr; }
+    .about{grid-template-columns:1fr; gap:36px;}
+  }
+  @media (max-width:720px){
+    .nav-links{position:fixed; top:70px; left:0; right:0; background:var(--ink); border-bottom:1px solid var(--line);
+      flex-direction:column; align-items:flex-start; padding:20px 24px; gap:18px; transform:translateY(-140%); transition:transform .3s ease; }
+    .nav-links.open{transform:translateY(0);}
+    .menu-btn{display:block;}
+    .btn-wa.desktop-only{display:none;}
+    .grid{grid-template-columns:1fr;}
+    section{padding:70px 0;}
+    .contact{padding:48px 22px;}
+    .foot-row{flex-direction:column; align-items:flex-start;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  :focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  ⚙️  GUÍA RÁPIDA PARA EDITAR ESTA PÁGINA
+  1) Tu número de WhatsApp: busca WHATSAPP_NUMBER más abajo en el <script>.
+  2) Fotos reales: reemplaza los bloques "slide" (placeholders con 🧢)
+     por <img src="assets/productos/tu-foto.jpg"> dentro de cada tarjeta.
+  3) Modelos 3D reales: cuando tengas tus archivos .glb, cambia el
+     atributo src="..." de cada <model-viewer> por la ruta a tu modelo
+     (ej: assets/modelos/gorra-01.glb). Ahora mismo todas usan un
+     modelo de EJEMPLO solo para que veas cómo se comporta la
+     interacción (arrastrar para girar, pellizcar para zoom).
+============================================================ -->
+
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="brand">
+      <img src="assets/logo-300.webp" alt="Streetwear Jockeys">
+      <span class="brand-name">STREETWEAR<span>JOCKEYS · TU ESTILO, TU ACTITUD</span></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+    <nav class="nav-links" id="navLinks">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn-wa" id="navWaBtn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.3 5.2 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.2 1 1-3.1-.2-.3C3.5 14.7 3 13.4 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+        WhatsApp
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="rope-ring"></div>
+    <div class="rope-ring r2"></div>
+    <img class="hero-logo" src="assets/logo-300.webp" alt="Logo Streetwear Jockeys">
+    <h1>TU ESTILO,<br><span class="holo-text">TU ACTITUD</span></h1>
+    <p class="hero-sub">Catálogo oficial de gorras Streetwear Jockeys. Explora cada modelo en fotos y en <strong>3D interactivo</strong> — gíralo, acércalo y mira cada detalle antes de escribirnos.</p>
+    <div class="hero-cta">
+      <a href="#catalogo" class="btn-primary">Ver catálogo</a>
+      <a href="#" class="btn-ghost wa-generic" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+    </div>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>SNAPBACK <em>·</em> TRUCKER <em>·</em> 5-PANEL <em>·</em> DAD HAT <em>·</em> CURVED BRIM <em>·</em> FLAT BRIM <em>·</em> EDICIÓN LIMITADA <em>·</em></span>
+        <span>SNAPBACK <em>·</em> TRUCKER <em>·</em> 5-PANEL <em>·</em> DAD HAT <em>·</em> CURVED BRIM <em>·</em> FLAT BRIM <em>·</em> EDICIÓN LIMITADA <em>·</em></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= DEMO 3D EXPLICATIVO ================= -->
+  <section class="wrap">
+    <div class="eyebrow">CÓMO FUNCIONA</div>
+    <div class="demo3d">
+      <div class="demo3d-viewer">
+        <div class="demo3d-tag">Modelo interactivo</div>
+        <model-viewer
+          src="https://modelviewer.dev/shared-assets/models/MaterialsVariantsShoe.glb"
+          camera-controls
+          auto-rotate
+          auto-rotate-delay="0"
+          rotation-per-second="18deg"
+          interaction-prompt="none"
+          shadow-intensity="1"
+          exposure="1.05"
+          camera-orbit="10deg 78deg 105%">
+        </model-viewer>
+        <div class="demo3d-hint">👆 Arrastra para girar · pellizca para zoom</div>
+      </div>
+      <div class="demo3d-copy">
+        <h3>Cada gorra, en 3D real</h3>
+        <p>Este visor es un <strong>modelo de muestra</strong> incluido solo para que pruebes la interacción: se puede arrastrar con el dedo o el mouse para verla desde todos los ángulos, igual que lo hará cada gorra cuando subas tus propios archivos.</p>
+        <p>Para activar el modelo real de una gorra, reemplaza el <code>src</code> del <code>&lt;model-viewer&gt;</code> de esa tarjeta por tu archivo <code>.glb</code> (por ejemplo <code>assets/modelos/snapback-negra.glb</code>).</p>
+        <ul class="demo3d-list">
+          <li><b>Foto:</b> vista rápida del producto, ideal para navegar el catálogo.</li>
+          <li><b>3D:</b> vista giratoria a 360°, controlada por el propio cliente.</li>
+          <li><b>WhatsApp:</b> el cliente consulta disponibilidad con un solo toque.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CATÁLOGO ================= -->
+  <section class="wrap" id="catalogo">
+    <div class="sec-head">
+      <div>
+        <div class="eyebrow">COLECCIÓN</div>
+        <h2>Catálogo de gorras</h2>
+      </div>
+      <p>Modelos de ejemplo — sustituye nombres, descripciones, fotos y modelos 3D por los de tu marca en el arreglo <code>PRODUCTS</code> del script.</p>
+    </div>
+
+    <div class="grid" id="catalogGrid"></div>
+  </section>
+
+  <!-- ================= NOSOTROS ================= -->
+  <section class="wrap" id="nosotros">
+    <div class="about">
+      <div class="about-visual">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <img src="assets/logo-300.webp" alt="Streetwear Jockeys">
+      </div>
+      <div class="about-copy">
+        <div class="eyebrow">NOSOTROS</div>
+        <h2>Streetwear en cada puntada</h2>
+        <p>Streetwear Jockeys nace de la cultura urbana: gorras pensadas para quienes usan la calle como pasarela. Cada modelo combina bordado de alta densidad, materiales resistentes y una actitud que no pasa desapercibida.</p>
+        <p>Este catálogo digital te deja explorar la colección completa antes de decidir — y cuando encuentres tu modelo, hablamos directo por WhatsApp.</p>
+        <div class="about-stats">
+          <div><b>100%</b><span>Bordado premium</span></div>
+          <div><b>+6</b><span>Modelos disponibles</span></div>
+          <div><b>360°</b><span>Vista 3D real</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section class="wrap" id="contacto">
+    <div class="contact">
+      <div class="eyebrow" style="justify-content:center;">HABLEMOS</div>
+      <h2>¿Ya elegiste tu <span class="holo-text">jockey</span>?</h2>
+      <p>Todas las ventas y consultas de disponibilidad, tallas y precios se atienden directo por WhatsApp. Escríbenos y con gusto te ayudamos a elegir.</p>
+      <a href="#" class="btn-primary wa-generic" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <div class="foot-brand">
+        <img src="assets/logo-300.webp" alt="Streetwear Jockeys">
+        <span>STREETWEAR JOCKEYS</span>
+      </div>
+      <div class="foot-links">
+        <a href="#catalogo">Catálogo</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#" class="wa-generic" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-copy">© 2026 Streetwear Jockeys. Catálogo únicamente — todas las compras se coordinan por WhatsApp.</div>
+  </div>
+</footer>
+
+<a href="#" class="fab-wa wa-generic" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.3 5.2 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.2 1 1-3.1-.2-.3C3.5 14.7 3 13.4 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   ⚙️  EDITA AQUÍ — CONFIGURACIÓN DE LA TIENDA
+============================================================ */
+
+// 1) Tu número de WhatsApp con código de país, SIN + ni espacios.
+//    Ejemplo México: "5215512345678"  |  Ejemplo genérico: "521234567890"
+const WHATSAPP_NUMBER = "521234567890"; // TODO: reemplaza por tu número real
+
+// 2) Modelo 3D de ejemplo (se usa en todas las tarjetas hasta que subas los tuyos)
+const DEMO_MODEL_URL = "https://modelviewer.dev/shared-assets/models/MaterialsVariantsShoe.glb";
+
+// 3) Colores de ejemplo para los "swatches" de cada producto
+const COLORWAYS = {
+  violeta:"#8b5cf6", teal:"#2dd4bf", negro:"#111114", blanco:"#f2f2f0", rosa:"#ec4899"
+};
+
+// 4) TUS PRODUCTOS — agrega, edita o borra los que necesites.
+//    photos: dejar vacío [] muestra un placeholder "🧢" — cuando tengas
+//    fotos reales, reemplaza esa tarjeta en el HTML por <img src="...">
+//    model: ruta a tu .glb real (ahora usa el modelo de muestra)
+const PRODUCTS = [
+  {
+    tag:"Más vendida", holo:true,
+    name:"Snapback Classic",
+    desc:"Visera plana, ajuste snapback y bordado 3D frontal.",
+    colors:["violeta","teal","negro"],
+    photos:["violeta","teal","negro"],
+    model: DEMO_MODEL_URL
+  },
+  {
+    tag:"Nuevo",
+    name:"Trucker Mesh",
+    desc:"Panel frontal estructurado + malla trasera transpirable.",
+    colors:["negro","blanco"],
+    photos:["negro","blanco"],
+    model: DEMO_MODEL_URL
+  },
+  {
+    tag:"Edición limitada", holo:true,
+    name:"5-Panel Drip",
+    desc:"Diseño urbano de 5 paneles inspirado en el grafiti del logo.",
+    colors:["violeta","rosa","teal"],
+    photos:["violeta","rosa","teal"],
+    model: DEMO_MODEL_URL
+  },
+  {
+    tag:"Básica",
+    name:"Dad Hat Curve",
+    desc:"Visera curva, corte relajado, bordado minimalista.",
+    colors:["negro","teal"],
+    photos:["negro","teal"],
+    model: DEMO_MODEL_URL
+  },
+  {
+    tag:"Premium",
+    name:"Flat Brim Bold",
+    desc:"Visera plana reforzada con parche holográfico frontal.",
+    colors:["violeta","negro"],
+    photos:["violeta","negro"],
+    model: DEMO_MODEL_URL
+  },
+  {
+    tag:"Nuevo",
+    name:"Curved Icon",
+    desc:"Silueta baja, ideal para uso diario, bordado tono sobre tono.",
+    colors:["blanco","violeta","teal"],
+    photos:["blanco","violeta","teal"],
+    model: DEMO_MODEL_URL
+  }
+];
+
+/* ============================================================
+   A partir de aquí es lógica de la página — no es necesario
+   tocarlo para actualizar productos o el número de WhatsApp.
+============================================================ */
+
+function waLink(productName){
+  const base = productName
+    ? `Hola 👋, vi el catálogo de Streetwear Jockeys y me interesa la gorra "${productName}". ¿Me das más info?`
+    : `Hola 👋, vi el catálogo de Streetwear Jockeys y quiero más información.`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(base)}`;
+}
+
+// enlaces genéricos (header, hero, footer, fab)
+document.querySelectorAll(".wa-generic, #navWaBtn").forEach(el=>{
+  el.href = waLink();
+});
+
+const grid = document.getElementById("catalogGrid");
+
+PRODUCTS.forEach((p, i)=>{
+  const card = document.createElement("article");
+  card.className = "card";
+
+  const swatches = p.colors.map(c=>`<span class="swatch" style="background:${COLORWAYS[c]||'#333'}"></span>`).join("");
+  const slides = p.photos.map(c=>`
+    <div class="slide" style="background:linear-gradient(160deg, ${COLORWAYS[c]||'#222'}55, #141317 75%)">
+      <div class="cap-ico">🧢</div>
+      <small>${c}</small>
+      <div class="ph-note">Foto de muestra — reemplaza con tu imagen real</div>
+    </div>`).join("");
+  const dots = p.photos.map((_,idx)=>`<div class="dot ${idx===0?'active':''}" data-i="${idx}"></div>`).join("");
+
+  card.innerHTML = `
+    <span class="patch ${p.holo?'holo':''}">${p.tag}</span>
+    <div class="media">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="foto">Foto</button>
+        <button class="tab-btn" data-tab="3d">3D</button>
+      </div>
+
+      <div class="pane pane-foto active">
+        <div class="slides">
+          <div class="slide-track">${slides}</div>
+          ${p.photos.length>1 ? `<button class="arrow prev">‹</button><button class="arrow next">›</button><div class="dots">${dots}</div>` : ``}
+        </div>
+      </div>
+
+      <div class="pane pane-3d">
+        <model-viewer
+          src="${p.model}"
+          camera-controls
+          auto-rotate
+          rotation-per-second="14deg"
+          shadow-intensity="1"
+          exposure="1.05"
+          camera-orbit="8deg 76deg 105%">
+        </model-viewer>
+        <span class="demo-badge">Modelo de muestra</span>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <h3>${p.name}</h3>
+      <p class="desc">${p.desc}</p>
+      <div class="swatches">${swatches}<span>${p.colors.length} colores</span></div>
+      <div class="card-foot">
+        <div class="price"><small>Disponibilidad</small>Consultar</div>
+        <a class="btn-card-wa" href="${waLink(p.name)}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.3-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.2-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.3 5.2 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.2 1 1-3.1-.2-.3C3.5 14.7 3 13.4 3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9z"/></svg>
+          Consultar
+        </a>
+      </div>
+    </div>
+  `;
+  grid.appendChild(card);
+
+  // --- tabs foto/3d ---
+  const tabBtns = card.querySelectorAll(".tab-btn");
+  const paneFoto = card.querySelector(".pane-foto");
+  const pane3d = card.querySelector(".pane-3d");
+  tabBtns.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      tabBtns.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      if(btn.dataset.tab==="foto"){ paneFoto.classList.add("active"); pane3d.classList.remove("active"); }
+      else { pane3d.classList.add("active"); paneFoto.classList.remove("active"); }
+    });
+  });
+
+  // --- carrusel de fotos ---
+  const track = card.querySelector(".slide-track");
+  const dotEls = card.querySelectorAll(".dot");
+  let idx = 0;
+  function goTo(n){
+    idx = (n + p.photos.length) % p.photos.length;
+    track.style.transform = `translateX(-${idx*100}%)`;
+    dotEls.forEach(d=>d.classList.remove("active"));
+    if(dotEls[idx]) dotEls[idx].classList.add("active");
+  }
+  card.querySelector(".arrow.prev")?.addEventListener("click", ()=>goTo(idx-1));
+  card.querySelector(".arrow.next")?.addEventListener("click", ()=>goTo(idx+1));
+  dotEls.forEach(d=>d.addEventListener("click", ()=>goTo(Number(d.dataset.i))));
+});
+
+// menú móvil
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+menuBtn.addEventListener("click", ()=> navLinks.classList.toggle("open"));
+navLinks.querySelectorAll("a").forEach(a=>a.addEventListener("click", ()=>navLinks.classList.remove("open")));
+</script>
+</body>
+</html>
